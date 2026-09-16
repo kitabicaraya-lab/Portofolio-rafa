@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafa A — Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   RAFA A — PORTOFOLIO
+   Palet: hitam #0A0C14 · putih #F4F4F2 · kuning #FFD400 · biru #2E6FF2
+   ========================================================= */
+
+:root{
+  --black: #0A0C14;
+  --panel: #12142080;
+  --white: #F4F4F2;
+  --yellow: #FFD400;
+  --blue: #2E6FF2;
+  --blue-dim: #1B3E8F;
+  --font-display: 'VT323', monospace;
+  --font-body: 'Space Grotesk', sans-serif;
+  --border-radius: 2px;
+  --navh: 84px;
+}
+
+*{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
+html, body{ height:100%; overflow-x:hidden; }
+html{ scroll-behavior: smooth; }
+body{ margin:0; background: var(--black); color: var(--white); font-family: var(--font-body); line-height:1.6; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+::selection{ background: var(--yellow); color: var(--black); }
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background: var(--black); }
+::-webkit-scrollbar-thumb{ background: var(--blue); border:2px solid var(--black); }
+
+a, button, img, .badge, .link-card, .hobby-card, .tag, .vinyl, .slider-btn, .dot, .brand, .filter-btn, .tab-btn{
+  -webkit-user-select:none; user-select:none; outline:none;
+}
+a:focus-visible, button:focus-visible{ outline: 1px dashed var(--yellow); outline-offset: 3px; }
+
+/* ================= BACKGROUND ================= */
+#starfield{ position:fixed; inset:0; width:100%; height:100%; z-index:-2;
+  background: radial-gradient(ellipse at 50% -10%, #101632 0%, var(--black) 60%); }
+.scanlines{ position:fixed; inset:0; z-index:50; pointer-events:none;
+  background: repeating-linear-gradient(to bottom, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 1px, transparent 2px, transparent 4px);
+  mix-blend-mode: overlay; opacity:.5; }
+
+/* ================= TICKER ================= */
+.ticker-bar{ background: var(--yellow); color: var(--black); overflow:hidden; white-space:nowrap;
+  font-family: var(--font-display); font-size:1.05rem; letter-spacing:.5px; border-bottom:3px solid var(--black);
+  position: sticky; top:0; z-index:101; }
+.ticker-track{ display:inline-block; padding-left:100%; animation: ticker 22s linear infinite; }
+@keyframes ticker{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
+
+/* ================= NAVBAR ================= */
+.navbar{ position: sticky; top:37px; z-index:100; background: rgba(10,12,20,.95);
+  backdrop-filter: blur(6px); border-bottom:2px solid var(--blue-dim); }
+.nav-wrap{ max-width:1200px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.brand{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.brand-photo-frame{ width:42px; height:42px; border-radius:50%; border:2px solid var(--yellow); padding:2px; overflow:hidden; background: var(--blue-dim); position:relative; }
+.brand-photo{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
+.brand-photo-frame.img-missing::after{ content:"🍳"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
+.brand-text{ display:flex; flex-direction:column; line-height:1.1; }
+.brand-name{ font-family: var(--font-display); font-size:1.35rem; letter-spacing:1px; }
+.brand-sub{ font-size:.65rem; color: var(--blue); letter-spacing:2px; }
+
+.tabs{ display:flex; gap:8px; margin-left:auto; }
+.tab-btn{ font-family: var(--font-display); font-size:1.05rem; letter-spacing:1px; background:none;
+  border:1px solid var(--blue-dim); color: var(--white); padding:6px 16px; border-radius:20px; cursor:pointer; }
+.tab-btn.active{ border-color: var(--yellow); color: var(--yellow); }
+
+.nav-badges{ display:flex; gap:8px; flex-shrink:0; }
+.badge{ display:flex; align-items:center; gap:6px; font-size:.72rem; border:1px solid var(--blue-dim);
+  padding:5px 9px; border-radius:20px; white-space:nowrap; }
+.badge:hover{ border-color: var(--yellow); color: var(--yellow); }
+.badge-dot{ width:7px; height:7px; border-radius:50%; display:inline-block; }
+.badge-dot.blue{ background: var(--blue); } .badge-dot.yellow{ background: var(--yellow); } .badge-dot.white{ background: var(--white); }
+
+/* ================= PAGE SWIPER ================= */
+.pages-viewport{ position:relative; height: calc(100vh - var(--navh)); overflow:hidden; }
+.pages-wrap{ display:flex; width:200vw; height:100%; transition: transform .4s ease; }
+.page{ width:100vw; height:100%; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+
+/* ================= HERO ================= */
+.hero{ min-height: 80vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:50px 20px; }
+.hero-inner{ max-width:700px; }
+.hero-photo-frame{ position:relative; width:150px; height:150px; margin:0 auto 20px; }
+.hero-photo-ring{ position:absolute; inset:-10px; border-radius:50%; border:3px dashed var(--blue); animation: spin-slow 18s linear infinite; }
+.hero-photo{ width:100%; height:100%; object-fit:cover; border-radius:50%; border:4px solid var(--yellow); background: var(--blue-dim); }
+.hero-photo-frame.img-missing::before{ content:"🍳"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-size:3rem; border-radius:50%; border:4px solid var(--yellow); background: var(--blue-dim); }
+@keyframes spin-slow{ from{transform:rotate(0);} to{transform:rotate(360deg);} }
+.hero-eyebrow{ font-family: var(--font-display); color: var(--blue); letter-spacing:3px; font-size:1rem; margin:0 0 4px; }
+.hero-title{ font-family: var(--font-display); font-size: clamp(3.2rem, 11vw, 6rem); margin:0; letter-spacing:4px; text-shadow: 4px 4px 0 var(--blue-dim); }
+.hero-typed{ font-family: var(--font-display); font-size:1.3rem; color: var(--yellow); min-height:1.6em; margin:6px 0 16px; }
+.cursor{ animation: blink 1s step-start infinite; color: var(--yellow); }
+@keyframes blink{ 50%{opacity:0;} }
+.hero-tags{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:26px; }
+.tag{ font-size:.8rem; padding:6px 14px; border-radius:20px; border:1px solid; }
+.tag-blue{ border-color: var(--blue); color: var(--blue); } .tag-yellow{ border-color: var(--yellow); color: var(--yellow); } .tag-white{ border-color: var(--white); }
+.cta-recipe{ font-family: var(--font-display); font-size:1.2rem; letter-spacing:1px; background: var(--yellow); color: var(--black);
+  border:none; padding:12px 26px; border-radius:30px; cursor:pointer; }
+.cta-recipe:hover{ background: var(--white); }
+.swipe-hint{ margin-top:14px; font-size:.75rem; color:#8890b0; }
+
+/* ================= SECTIONS ================= */
+.section{ max-width:1200px; margin:0 auto; padding:70px 20px; }
+.section-alt{ background: rgba(46,111,242,0.05); }
+.section-title{ font-family: var(--font-display); font-size:2.2rem; letter-spacing:1px; margin:0 0 10px; display:flex; align-items:baseline; gap:14px; }
+.section-title .num{ color: var(--blue); font-size:1.1rem; border:1px solid var(--blue); padding:2px 10px; }
+.section-desc{ color:#b9bdd0; max-width:640px; margin:0 0 30px; font-size:.92rem; }
+
+.about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:start; }
+.crt-panel{ background:#05060c; border:2px solid var(--blue-dim); padding:24px; font-family: var(--font-display);
+  font-size:1.12rem; box-shadow:0 0 0 4px #05060c, 0 0 25px rgba(46,111,242,.25); }
+.crt-line{ margin:0 0 10px; color: var(--yellow); }
+.crt-line:last-child{ margin-bottom:0; color: var(--white); }
+
+.hobby-cards{ display:flex; flex-direction:column; gap:16px; }
+.hobby-card{ border:1px solid var(--blue-dim); padding:18px 20px; transition:border-color .2s, transform .2s; }
+.hobby-card:hover{ border-color: var(--yellow); transform: translateX(4px); }
+.hobby-icon{ font-size:1.6rem; margin-bottom:6px; }
+.hobby-card h3{ margin:0 0 6px; font-size:1.1rem; }
+.hobby-card p{ margin:0; font-size:.88rem; color:#b9bdd0; }
+
+.links-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:18px; }
+.link-card{ border:1px solid var(--blue-dim); padding:22px; display:flex; flex-direction:column; gap:4px; transition: transform .2s, border-color .2s; }
+.link-card:hover{ transform: translateY(-4px); border-color: var(--yellow); }
+.link-icon{ font-size:1.6rem; margin-bottom:8px; }
+.link-name{ font-family: var(--font-display); font-size:1.15rem; }
+.link-desc{ font-size:.8rem; color:#b9bdd0; }
+
+.footer{ border-top:2px solid var(--blue-dim); padding:40px 20px 100px; text-align:center; background:#05060c; }
+.footer-title{ font-family: var(--font-display); font-size:1.7rem; color: var(--yellow); letter-spacing:2px; margin:0; }
+.footer-sub{ font-family: var(--font-display); font-size:1.05rem; color: var(--blue); letter-spacing:4px; margin:2px 0 16px; }
+.footer-badges{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; font-size:.8rem; color:#b9bdd0; margin-bottom:12px; }
+.footer-badges a:hover{ color: var(--yellow); }
+.footer-copy{ font-size:.7rem; color:#6a6f88; margin:0; }
+
+/* ================= RESEP PAGE ================= */
+.recipe-header{ display:flex; align-items:center; gap:14px; padding: 26px 20px 6px; max-width:1200px; margin:0 auto; flex-wrap:wrap; }
+.back-btn{ font-family: var(--font-display); font-size:1rem; background:none; border:1px solid var(--blue-dim); color: var(--white);
+  padding:6px 14px; border-radius:20px; cursor:pointer; }
+.back-btn:hover{ border-color: var(--yellow); color: var(--yellow); }
+.recipe-header h2{ font-family: var(--font-display); font-size:1.9rem; margin:0; letter-spacing:1px; }
+
+.filters{ max-width:1200px; margin: 6px auto 0; padding: 0 20px; display:flex; flex-direction:column; gap:10px; }
+.filter-row{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.filter-row .label{ font-size:.75rem; color: var(--blue); width:78px; flex-shrink:0; }
+.filter-btn{ font-size:.78rem; background:none; border:1px solid var(--blue-dim); color: var(--white);
+  padding:5px 12px; border-radius:16px; cursor:pointer; }
+.filter-btn.active{ border-color: var(--yellow); color: var(--black); background: var(--yellow); }
+.shuffle-btn{ font-size:.78rem; background:none; border:1px solid var(--blue); color: var(--blue); padding:5px 12px; border-radius:16px; cursor:pointer; margin-left:auto; }
+.shuffle-btn:hover{ background: var(--blue); color: var(--white); }
+.filter-note{ font-size:.68rem; color:#6a6f88; font-style:italic; }
+
+.recipe-slider-wrap{ max-width:1200px; margin: 24px auto 60px; padding: 0 20px; }
+.slider{ display:flex; align-items:center; gap:12px; }
+.slider-track-wrap{ overflow:hidden; flex:1; }
+.slider-track{ display:flex; transition: transform .45s ease; }
+.slide{ min-width:100%; display:grid; grid-template-columns:1.1fr 1fr; gap:24px; align-items:start; padding:6px; }
+.slide-img-frame{ border:2px solid var(--blue-dim); padding:6px; background:#05060c; position:relative; }
+.slide-img-frame::before{ content:""; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; border:1px solid var(--yellow); pointer-events:none; }
+.slide-img-frame img{ width:100%; height:280px; object-fit:cover; }
+.slide-badges{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+.slide-badge{ font-size:.7rem; padding:4px 10px; border-radius:12px; border:1px solid var(--blue); color: var(--blue); }
+.slide-badge.warm{ border-color: var(--yellow); color: var(--yellow); }
+.slide-title{ font-size:1.35rem; color: var(--yellow); margin:0 0 6px; }
+.slide-tema{ font-family: var(--font-display); font-size:1rem; color: var(--blue); margin:0 0 10px; }
+.slide-block-label{ font-family: var(--font-display); font-size:.95rem; color: var(--white); margin: 14px 0 4px; letter-spacing:1px; }
+.slide-desc, .slide-steps{ font-size:.85rem; color:#d3d6e3; max-height:130px; overflow-y:auto; padding-right:6px; }
+.slide-link{ display:inline-block; margin-top:14px; font-size:.82rem; color: var(--blue); border-bottom:1px dotted var(--blue); }
+
+.slider-btn{ background:none; border:1px solid var(--blue-dim); color: var(--white); font-size:1.6rem; width:42px; height:42px; cursor:pointer; flex-shrink:0; border-radius:50%; }
+.slider-btn:hover{ border-color: var(--yellow); color: var(--yellow); }
+.slider-dots{ display:flex; justify-content:center; gap:8px; margin-top:16px; flex-wrap:wrap; }
+.slider-dots .dot{ width:8px; height:8px; border-radius:50%; background: var(--blue-dim); cursor:pointer; }
+.slider-dots .dot.active{ background: var(--yellow); }
+
+.loading, .error-msg{ font-family: var(--font-display); font-size:1.05rem; color: var(--blue); padding:40px; text-align:center; width:100%; }
+.error-msg{ color: var(--yellow); }
+.dots{ animation: dots 1.4s steps(4,end) infinite; }
+@keyframes dots{ 0%,20%{opacity:0;} 50%{opacity:1;} 100%{opacity:0;} }
+
+/* ================= MUSIC PLAYER ================= */
+.music-player{ position:fixed; bottom:20px; right:20px; z-index:200; display:flex; align-items:center; gap:12px;
+  background: rgba(10,12,20,.92); border:1px solid var(--blue-dim); padding:8px 16px 8px 8px; border-radius:40px; backdrop-filter: blur(6px); }
+.vinyl{ width:52px; height:52px; border-radius:50%; background: radial-gradient(circle at center, #000 0 8px, #1a1c28 9px, #1a1c28 20px, #000 21px);
+  border:2px solid var(--yellow); cursor:pointer; position:relative; overflow:hidden; padding:0; }
+.vinyl-photo{ width:100%; height:100%; object-fit:cover; border-radius:50%; opacity:.55; }
+.vinyl-hole{ position:absolute; top:50%; left:50%; width:10px; height:10px; background: var(--black); border-radius:50%; transform: translate(-50%,-50%); border:2px solid var(--yellow); }
+.vinyl.spinning{ animation: spin-vinyl 3s linear infinite; }
+@keyframes spin-vinyl{ from{transform:rotate(0);} to{transform:rotate(360deg);} }
+.music-info{ line-height:1.2; }
+.music-title{ margin:0; font-family: var(--font-display); font-size:1.1rem; }
+.music-state{ margin:0; font-size:.68rem; color: var(--blue); }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:900px){
+  .about-grid{ grid-template-columns:1fr; }
+  .slide{ grid-template-columns:1fr; }
+  .slide-img-frame img{ height:220px; }
+}
+@media (max-width:760px){
+  .tabs{ order:3; width:100%; justify-content:center; margin-left:0; }
+  .nav-badges{ display:none; }
+  .swipe-hint{ display:block; }
+}
+@media (min-width:761px){
+  .swipe-hint{ display:none; }
+}
+@media (max-width:480px){
+  .section{ padding:50px 16px; }
+  .section-title{ font-size:1.7rem; }
+  .music-info{ display:none; }
+  .music-player{ bottom:14px; right:14px; padding:6px 12px 6px 6px; }
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="scanlines"></div>
+
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <span>★ PRESENTASI RAFA 2026 ★ PORTOFOLIO ★ MISI: MASAK & MAIN GAME ★ RESEP TERBUKA DARI THEMEALDB ★ PRESENTASI RAFA 2026 ★ PORTOFOLIO ★ MISI: MASAK & MAIN GAME ★ RESEP TERBUKA DARI THEMEALDB ★</span>
+  </div>
+</div>
+
+<header class="navbar">
+  <div class="nav-wrap">
+    <a href="#" class="brand" onclick="goToPage(0); return false;">
+      <span class="brand-photo-frame">
+        <img src="image.png" alt="Foto Rafa A" class="brand-photo" onerror="this.parentElement.classList.add('img-missing')">
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">RAFA A.</span>
+        <span class="brand-sub">KELAS 8C</span>
+      </span>
+    </a>
+
+    <div class="tabs">
+      <button class="tab-btn active" id="tabUtama" onclick="goToPage(0)">🏠 Utama</button>
+      <button class="tab-btn" id="tabResep" onclick="goToPage(1)">🍳 Resep</button>
+    </div>
+
+    <div class="nav-badges">
+      <a class="badge" href="https://peta-balloon.vercel.app" target="_blank" rel="noopener"><span class="badge-dot blue"></span> Web Buatanku</a>
+      <a class="badge" href="https://www.google.com/maps/search/?api=1&query=SMP+YKTB+Bogor+Barat" target="_blank" rel="noopener"><span class="badge-dot yellow"></span> Lokasi Sekolah</a>
+      <a class="badge" href="https://www.tiktok.com/@GANTI_TIKTOK_RAFA" target="_blank" rel="noopener"><span class="badge-dot white"></span> TikTok</a>
+    </div>
+  </div>
+</header>
+
+<div class="pages-viewport">
+  <div class="pages-wrap" id="pagesWrap">
+
+    <!-- ================= PAGE 1: UTAMA ================= -->
+    <section class="page" id="pageUtama">
+
+      <div class="hero">
+        <div class="hero-inner">
+          <div class="hero-photo-frame">
+            <div class="hero-photo-ring"></div>
+            <img src="image.png" alt="Foto Rafa A" class="hero-photo" onerror="this.parentElement.classList.add('img-missing')">
+          </div>
+          <p class="hero-eyebrow">// SIAP MEMASAK</p>
+          <h1 class="hero-title">RAFA A</h1>
+          <p class="hero-typed"><span id="typedText"></span><span class="cursor">_</span></p>
+          <div class="hero-tags">
+            <span class="tag tag-blue">Kelas 8C</span>
+            <span class="tag tag-yellow">Masak</span>
+            <span class="tag tag-white">Main Game</span>
+          </div>
+          <button class="cta-recipe" onclick="goToPage(1)">🍽️ Lihat Resep Masakan →</button>
+          <p class="swipe-hint">👉 geser layar ke kiri untuk lihat resep</p>
+        </div>
+      </div>
+
+      <section class="section" id="tentang">
+        <h2 class="section-title"><span class="num">01</span> Tentang</h2>
+        <div class="about-grid">
+          <div class="crt-panel">
+            <p class="crt-line">&gt; NAMA: Rafa A</p>
+            <p class="crt-line">&gt; KELAS: 8C</p>
+            <p class="crt-line">&gt; HOBI: Masak, Main Game</p>
+            <p class="crt-line">&gt; STATUS: Racik resep sambil main game ✦</p>
+          </div>
+          <div class="hobby-cards">
+            <div class="hobby-card">
+              <div class="hobby-icon">🍳</div>
+              <h3>Masak</h3>
+              <p>Suka coba-coba resep baru dan bikin masakan sendiri.</p>
+            </div>
+            <div class="hobby-card">
+              <div class="hobby-icon">🎮</div>
+              <h3>Main Game</h3>
+              <p>Suka main game buat hiburan dan latihan strategi.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="tautan">
+        <h2 class="section-title"><span class="num">02</span> Tautan</h2>
+        <div class="links-grid">
+          <a class="link-card" href="" target="_blank" rel="noopener">
+            <span class="link-icon">🌐</span><span class="link-name">ga ada</span><span class="link-desc">Web buatanku</span>
+          </a>
+          <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=SMP+YKTB+Bogor+Barat" target="_blank" rel="noopener">
+            <span class="link-icon">📍</span><span class="link-name">SMP YKTB Bogor Barat</span><span class="link-desc">Lokasi sekolah</span>
+          </a>
+          <a class="link-card" href="" target="_blank" rel="noopener">
+            <span class="link-icon">🎵</span><span class="link-name">@ga ada</span><span class="link-desc"></span>
+          </a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <p class="footer-title">PRESENTASI RAFA 2026</p>
+          <p class="footer-sub">PORTOFOLIO</p>
+          <div class="footer-badges">
+            <a href="https://peta-balloon.vercel.app" target="_blank" rel="noopener">Web Buatanku</a>
+            <span>•</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=SMP+YKTB+Bogor+Barat" target="_blank" rel="noopener">SMP YKTB Bogor Barat</a>
+            <span>•</span>
+            <a href="https://www.tiktok.com/@GANTI_TIKTOK_RAFA" target="_blank" rel="noopener">TikTok</a>
+          </div>
+          <p class="footer-copy">© 2026 Rafa A — Kelas 8C. Data resep oleh TheMealDB Open API.</p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ================= PAGE 2: RESEP ================= -->
+    <section class="page" id="pageResep">
+      <div class="recipe-header">
+        <button class="back-btn" onclick="goToPage(0)">← Kembali ke Utama</button>
+        <h2>🍳 Resep Masakan</h2>
+      </div>
+      <p class="section-desc" style="max-width:1200px;margin:0 auto;padding:0 20px;">
+        Diambil dari TheMealDB — sumber data resep terbuka (open source).
+      </p>
+
+      <div class="filters">
+        <div class="filter-row">
+          <span class="label">Suhu</span>
+          <button class="filter-btn active" data-group="suhu" data-val="semua">Semua</button>
+          <button class="filter-btn" data-group="suhu" data-val="dingin">❄ Dingin</button>
+          <button class="filter-btn" data-group="suhu" data-val="hangat">🔥 Hangat</button>
+        </div>
+        <div class="filter-row">
+          <span class="label">Tekstur</span>
+          <button class="filter-btn active" data-group="tekstur" data-val="semua">Semua</button>
+          <button class="filter-btn" data-group="tekstur" data-val="berkuah">🥣 Berkuah</button>
+          <button class="filter-btn" data-group="tekstur" data-val="kering">🍢 Tidak Berkuah</button>
+          <button class="filter-btn" data-group="tekstur" data-val="nyemek">🍜 Nyemek</button>
+          <button class="shuffle-btn" id="shuffleBtn">🔀 Acak Resep Baru</button>
+        </div>
+        <p class="filter-note">*Label dingin/hangat & berkuah/nyemek dideteksi otomatis dari nama & bahan resep, jadi kadang meleset.</p>
+      </div>
+
+      <div class="recipe-slider-wrap">
+        <div class="slider" id="recipeSlider">
+          <button class="slider-btn prev" id="rPrevBtn" aria-label="Sebelumnya">‹</button>
+          <div class="slider-track-wrap">
+            <div class="slider-track" id="rSliderTrack">
+              <div class="loading">Mengambil resep dari dapur digital<span class="dots">...</span></div>
+            </div>
+          </div>
+          <button class="slider-btn next" id="rNextBtn" aria-label="Berikutnya">›</button>
+        </div>
+        <div class="slider-dots" id="rSliderDots"></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="music-player" id="musicPlayer">
+  <button class="vinyl" id="vinylBtn" aria-label="Putar / jeda musik">
+    <img src="image.png" class="vinyl-photo" alt="" onerror="this.style.display='none'">
+    <span class="vinyl-hole"></span>
+  </button>
+  <div class="music-info">
+    <p class="music-title">Alamak</p>
+    <p class="music-state" id="musicState">Klik piringan untuk putar</p>
+  </div>
+</div>
+<audio id="audio" src="music.mp3" loop preload="none"></audio>
+
+<script>
+/* ================= STARFIELD ================= */
+(function starfield(){
+  const canvas = document.getElementById("starfield");
+  const ctx = canvas.getContext("2d");
+  let stars = [];
+  function resize(){
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    const count = Math.floor((canvas.width * canvas.height) / 9000);
+    stars = Array.from({length:count}, () => ({
+      x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+      r: Math.random()*1.4+0.2, tw: Math.random()*Math.PI*2, speed: Math.random()*0.015+0.005,
+      color: Math.random()<0.12 ? "#FFD400" : (Math.random()<0.25 ? "#2E6FF2" : "#ffffff")
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for (const s of stars){
+      s.tw += s.speed;
+      ctx.globalAlpha = Math.max(0.1, 0.4 + Math.sin(s.tw)*0.4);
+      ctx.fillStyle = s.color;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener("resize", resize);
+  resize();
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches){ draw(); }
+})();
+
+/* ================= HERO TYPED TEXT ================= */
+(function typedText(){
+  const el = document.getElementById("typedText");
+  const phrases = ["Siswa kelas 8C", "Suka masak & main game", "Chef amatir & gamer sejati", "Selamat datang di portofolioku!"];
+  let p=0, i=0, deleting=false;
+  function tick(){
+    const current = phrases[p];
+    if (!deleting){
+      i++; el.textContent = current.slice(0,i);
+      if (i === current.length){ deleting = true; setTimeout(tick, 1400); return; }
+    } else {
+      i--; el.textContent = current.slice(0,i);
+      if (i === 0){ deleting = false; p = (p+1) % phrases.length; }
+    }
+    setTimeout(tick, deleting ? 35 : 60);
+  }
+  tick();
+})();
+
+/* ================= PAGE SWIPE NAVIGATION ================= */
+let currentPage = 0;
+const pagesWrap = document.getElementById("pagesWrap");
+const tabUtama = document.getElementById("tabUtama");
+const tabResep = document.getElementById("tabResep");
+
+function goToPage(i){
+  currentPage = i;
+  pagesWrap.style.transform = `translateX(-${i*100}vw)`;
+  tabUtama.classList.toggle("active", i===0);
+  tabResep.classList.toggle("active", i===1);
+}
+
+(function swipeHandler(){
+  const vp = document.querySelector(".pages-viewport");
+  let startX=0, startY=0, tracking=false;
+  vp.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX; startY = e.touches[0].clientY; tracking = true;
+  }, {passive:true});
+  vp.addEventListener("touchend", e => {
+    if (!tracking) return;
+    tracking = false;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)){
+      if (dx < 0 && currentPage === 0) goToPage(1);       // geser kiri -> ke Resep
+      else if (dx > 0 && currentPage === 1) goToPage(0);  // geser kanan -> kembali ke Utama
+    }
+  }, {passive:true});
+})();
+
+/* ================= THEMEALDB ================= */
+const MEALDB_BASE = "https://www.themealdb.com/api/json/v1/1";
+let recipes = [];
+let filteredRecipes = [];
+let currentRecipeSlide = 0;
+let activeFilters = { suhu: "semua", tekstur: "semua" };
+
+function classifyMeal(meal){
+  const text = `${meal.strMeal} ${meal.strCategory} ${meal.strArea} ${meal.strInstructions}`.toLowerCase();
+  let suhu = "hangat";
+  if (/ice|iced|cold|frozen|smoothie|shake|sorbet|granita|es\b/.test(text)) suhu = "dingin";
+  let tekstur = "nyemek";
+  if (/soup|stew|curry|broth|kuah|noodle soup|chowder/.test(text)) tekstur = "berkuah";
+  else if (/fried|grill|roast|bake|crispy|dry|skewer|toast/.test(text)) tekstur = "kering";
+  return { suhu, tekstur };
+}
+
+function ingredientsList(meal){
+  const list = [];
+  for (let i=1; i<=20; i++){
+    const ing = meal[`strIngredient${i}`];
+    const measure = meal[`strMeasure${i}`];
+    if (ing && ing.trim()) list.push(`${measure ? measure.trim() + " " : ""}${ing.trim()}`);
+  }
+  return list;
+}
+
+async function loadRecipes(){
+  const track = document.getElementById("rSliderTrack");
+  track.innerHTML = `<div class="loading">Mengambil resep dari dapur digital<span class="dots">...</span></div>`;
+  try {
+    const calls = Array.from({length:10}, () => fetch(`${MEALDB_BASE}/random.php`).then(r => r.json()));
+    const results = await Promise.all(calls);
+    const seen = new Set();
+    recipes = [];
+    for (const r of results){
+      const meal = r.meals && r.meals[0];
+      if (meal && !seen.has(meal.idMeal)){
+        seen.add(meal.idMeal);
+        recipes.push({ ...meal, ...classifyMeal(meal) });
+      }
+    }
+    applyFilters();
+  } catch (err){
+    track.innerHTML = `<p class="error-msg">Dapur digital sedang gangguan. Coba muat ulang halaman. (${err.message})</p>`;
+  }
+}
+
+function applyFilters(){
+  filteredRecipes = recipes.filter(m =>
+    (activeFilters.suhu === "semua" || m.suhu === activeFilters.suhu) &&
+    (activeFilters.tekstur === "semua" || m.tekstur === activeFilters.tekstur)
+  );
+  currentRecipeSlide = 0;
+  renderRecipeSlides();
+}
+
+function renderRecipeSlides(){
+  const track = document.getElementById("rSliderTrack");
+  const dotsWrap = document.getElementById("rSliderDots");
+
+  if (!filteredRecipes.length){
+    track.innerHTML = `<p class="loading">Tidak ada resep yang cocok dengan filter ini. Coba filter lain atau klik Acak Resep Baru.</p>`;
+    dotsWrap.innerHTML = "";
+    return;
+  }
+
+  track.innerHTML = filteredRecipes.map(m => {
+    const suhuLabel = m.suhu === "dingin" ? "❄ Dingin" : "🔥 Hangat";
+    const teksturLabel = m.tekstur === "berkuah" ? "🥣 Berkuah" : (m.tekstur === "kering" ? "🍢 Tidak Berkuah" : "🍜 Nyemek");
+    const ingredients = ingredientsList(m);
+    return `
+      <div class="slide">
+        <div>
+          <div class="slide-img-frame"><img src="${m.strMealThumb}" alt="${escapeHTML(m.strMeal)}" loading="lazy"></div>
+          <div class="slide-badges">
+            <span class="slide-badge ${m.suhu==='hangat' ? 'warm' : ''}">${suhuLabel}</span>
+            <span class="slide-badge ${m.tekstur!=='berkuah' ? 'warm' : ''}">${teksturLabel}</span>
+          </div>
+        </div>
+        <div>
+          <h3 class="slide-title">${escapeHTML(m.strMeal)}</h3>
+          <p class="slide-tema">Tema: ${escapeHTML(m.strCategory)} · Asal: ${escapeHTML(m.strArea)}</p>
+
+          <p class="slide-block-label">📋 Deskripsi</p>
+          <div class="slide-desc">
+            Bahan-bahan: ${escapeHTML(ingredients.join(", "))}.<br>
+            <em>Info kalori tidak tersedia dari sumber data TheMealDB.</em>
+          </div>
+
+          <p class="slide-block-label">👩‍🍳 Cara Membuat</p>
+          <div class="slide-steps">${escapeHTML(m.strInstructions)}</div>
+
+          <a class="slide-link" href="https://www.themealdb.com/meal/${m.idMeal}" target="_blank" rel="noopener">Lihat resep asli ↗</a>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  dotsWrap.innerHTML = filteredRecipes.map((_,i) => `<span class="dot ${i===0?'active':''}" data-i="${i}"></span>`).join("");
+  dotsWrap.querySelectorAll(".dot").forEach(dot => {
+    dot.addEventListener("click", () => goToRecipeSlide(Number(dot.dataset.i)));
+  });
+
+  updateRecipeSliderPosition();
+}
+
+function updateRecipeSliderPosition(){
+  const track = document.getElementById("rSliderTrack");
+  track.style.transform = `translateX(-${currentRecipeSlide*100}%)`;
+  document.querySelectorAll("#rSliderDots .dot").forEach((d,i) => d.classList.toggle("active", i===currentRecipeSlide));
+}
+
+function goToRecipeSlide(i){
+  if (!filteredRecipes.length) return;
+  currentRecipeSlide = (i + filteredRecipes.length) % filteredRecipes.length;
+  updateRecipeSliderPosition();
+}
+
+document.getElementById("rPrevBtn").addEventListener("click", () => goToRecipeSlide(currentRecipeSlide-1));
+document.getElementById("rNextBtn").addEventListener("click", () => goToRecipeSlide(currentRecipeSlide+1));
+document.getElementById("shuffleBtn").addEventListener("click", loadRecipes);
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const group = btn.dataset.group, val = btn.dataset.val;
+    document.querySelectorAll(`.filter-btn[data-group="${group}"]`).forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilters[group] = val;
+    applyFilters();
+  });
+});
+
+function escapeHTML(str){
+  const div = document.createElement("div");
+  div.textContent = str ?? "";
+  return div.innerHTML;
+}
+
+/* ================= MUSIC PLAYER ================= */
+(function musicPlayer(){
+  const audio = document.getElementById("audio");
+  const vinylBtn = document.getElementById("vinylBtn");
+  const stateText = document.getElementById("musicState");
+  vinylBtn.addEventListener("click", () => {
+    if (audio.paused){ audio.play().catch(() => { stateText.textContent = "File music.mp3 belum ditemukan"; }); }
+    else { audio.pause(); }
+  });
+  audio.addEventListener("play", () => { vinylBtn.classList.add("spinning"); stateText.textContent = "Sedang diputar..."; });
+  audio.addEventListener("pause", () => { vinylBtn.classList.remove("spinning"); stateText.textContent = "Klik piringan untuk putar"; });
+})();
+
+/* ================= INIT ================= */
+loadRecipes();
+</script>
+</body>
+</html>
